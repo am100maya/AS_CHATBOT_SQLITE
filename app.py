@@ -14,10 +14,11 @@ st.title("🦜 LangChain: Chat with SQL DB")
 
 LOCALDB = "USE_LOCALDB"
 db_uri = LOCALDB
-api_key = "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"  # Ensure your API key is securely stored
 
+# Retrieve API key securely from Streamlit secrets.
+openai_api_key = st.secrets["OPENAI_API_KEY"]
 ## LLM model
-llm = ChatOpenAI(api_key=api_key, model_name="gpt-4", streaming=True)
+llm = ChatOpenAI(api_key=openai_api_key, model_name="gpt-4", streaming=True)
 
 @st.cache_resource(ttl="2h")
 def configure_db(db_uri):
